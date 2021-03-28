@@ -1,0 +1,17 @@
+[tool.black]
+target-version = ['py36', 'py37', 'py38']
+exclude = '''
+/(
+    \.eggs  # exclude a few common dirs in the root of the project
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

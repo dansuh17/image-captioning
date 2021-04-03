@@ -24,15 +24,17 @@ pip install pylint
 # Auto-formatting
 
 ```
-black ./
+yapf -i ./image_captioning/**/*.py
 ```
+
+Warning: The option `-i` will modify the files in-place.
 
 **Prerequisite**:
 
-- [black](https://github.com/psf/black): install `black` with:
+- [yapf](https://github.com/google/yapf): install `yapf` with:
 
 ```
-pip install black
+pip install yapf
 ```
 
-`black` reads `pyproject.toml` configuration for autoformatting options.
+`yapf` reads `pyproject.toml` configuration for autoformatting options.

@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,3 +31,7 @@ jobs:
       run: |
         # stop the build if there are Python lint errors
         pylint --rcfile=.pylintrc -f colorized image_captioning/**/*.py
+    - name: Unit tests
+      run: |
+        # Find test files that end with "_test.py" and run them.
+        python -m unittest discover --verbose image_captioning "*_test.py"

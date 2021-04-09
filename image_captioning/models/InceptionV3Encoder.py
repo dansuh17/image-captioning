@@ -8,10 +8,11 @@ class InceptionV3Encoder(tf.keras.Model):
     """Encoder using the Inception V3 backbone
     """
 
-    def __init__(self, embedding_dim: int):
+    def __init__(self, embedding_dim: int, train_backbone: bool = False):
         """
         Arguments:
             embedding_dim: The number of channels to embed the output into.
+            train_backbone: Whether to make backbone weights trainable
         """
         super().__init__()
         self.embedding_dim = embedding_dim
@@ -19,13 +20,12 @@ class InceptionV3Encoder(tf.keras.Model):
         # Using Inception V3 backbone
         self.backbone = tf.keras.applications.InceptionV3(include_top=False,
                                                           weights='imagenet')
-        new_input = self.backbone.input
-        hidden_layer = self.backbone.layers[-1].output
-        self.backbone = tf.keras.Model(new_input, hidden_layer)
+        self.backbone.trainable = train_backbone
 
         # FC layer to output into embedding dims
         self.fc = tf.keras.layers.Dense(embedding_dim)
 
+    # pylint: disable=arguments-differ
     def call(self, images: tf.Tensor) -> tf.Tensor:
         """
         Arguments:

@@ -6,7 +6,7 @@ import unittest
 
 import tensorflow as tf
 
-from image_captioning.models.encoder.encoder import Encoder
+from .encoder import Encoder
 
 
 class EncoderTest(unittest.TestCase):

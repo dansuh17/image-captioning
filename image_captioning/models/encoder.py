@@ -3,7 +3,7 @@ Encoder part of the image captioning module
 """
 import tensorflow as tf
 
-from image_captioning.models.encoder.model_selector import select_model
+from .model_selector import select_model
 
 
 class Encoder(tf.keras.Model):
@@ -24,6 +24,7 @@ class Encoder(tf.keras.Model):
 
         self.model = select_model(model_name, embedding_dim)
 
+    # pylint: disable=arguments-differ
     def call(self, images: tf.Tensor) -> tf.Tensor:
         """
         Arguments:
